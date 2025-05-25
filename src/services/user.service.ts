@@ -8,7 +8,9 @@ export const registerUser = async (name: string, email: string, password: string
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await User.create({ name, email, password: hashedPassword });
-  return user;
+  const userObj = user.toObject() as Omit<IUser, 'password'> & { password?: string };
+  delete userObj.password;
+  return userObj;
 };
 
 export const loginUser = async (email: string, password: string) => {
@@ -21,7 +23,9 @@ export const loginUser = async (email: string, password: string) => {
     expiresIn: '7d'
   });
 
-  return { token };
+  const userObj = user.toObject() as Omit<IUser, 'password'> & { password?: string };
+  delete userObj.password;
+  return { token, user: userObj };
 };
 
 export const getAllUsers = () => User.find();
