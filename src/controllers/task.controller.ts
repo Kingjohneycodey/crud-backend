@@ -50,5 +50,5 @@ export const remove = async (req: AuthRequest, res: Response): Promise<void> => 
   }
 
   await deleteTask(req.params.id);
-  res.status(204).send();
+  res.status(200).json({ message: 'Task deleted successfully' });
 };

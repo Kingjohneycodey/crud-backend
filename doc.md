@@ -23,3 +23,11 @@
   "description": "This is task one"
 }
 
+/api/tasks (put)
+
+{
+  "name": "update task",
+  "description": "This is task one"
+}
+
+
