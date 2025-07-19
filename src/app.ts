@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import userRoutes from './routes/user.routes';
-import taskRoutes from './routes/task.routes';
+import routes from './routes/index.route';
 
 dotenv.config();
 
@@ -9,7 +8,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/users', userRoutes);
-app.use('/api/tasks', taskRoutes);
+app.use('/api', routes);
 
 export default app;
